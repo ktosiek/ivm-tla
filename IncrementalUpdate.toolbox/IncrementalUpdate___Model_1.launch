@@ -17,11 +17,11 @@
 <booleanAttribute key="mcMode" value="true"/>
 <stringAttribute key="modelBehaviorInit" value="Init"/>
 <stringAttribute key="modelBehaviorNext" value="Next"/>
-<stringAttribute key="modelBehaviorSpec" value=""/>
-<intAttribute key="modelBehaviorSpecType" value="2"/>
-<stringAttribute key="modelBehaviorVars" value="mHop, dLink, link"/>
+<stringAttribute key="modelBehaviorSpec" value="Spec"/>
+<intAttribute key="modelBehaviorSpecType" value="1"/>
+<stringAttribute key="modelBehaviorVars" value="mUserDoc, dUserGroups, dDocGroups, userGroups, docGroups"/>
 <stringAttribute key="modelComments" value=""/>
-<booleanAttribute key="modelCorrectnessCheckDeadlock" value="false"/>
+<booleanAttribute key="modelCorrectnessCheckDeadlock" value="true"/>
 <listAttribute key="modelCorrectnessInvariants">
 <listEntry value="1TypeOK"/>
 <listEntry value="1Consistent"/>
@@ -30,10 +30,11 @@
 <stringAttribute key="modelExpressionEval" value=""/>
 <stringAttribute key="modelParameterActionConstraint" value=""/>
 <listAttribute key="modelParameterConstants">
-<listEntry value="LinkId;;{d0, d1, d2};1;1"/>
-<listEntry value="PotentialLinks;;{ &lt;&lt;d0, d0&gt;&gt;, &lt;&lt;d0, d1&gt;&gt;, &lt;&lt;d0, d2&gt;&gt;,&#10;  &lt;&lt;d1, d0&gt;&gt;, &lt;&lt;d1, d1&gt;&gt;, &lt;&lt;d1, d2&gt;&gt; };0;0"/>
+<listEntry value="Documents;;{d1, d2};1;1"/>
+<listEntry value="Groups;;{g1, g2};1;1"/>
+<listEntry value="Users;;{u1, u2};1;1"/>
 </listAttribute>
-<stringAttribute key="modelParameterContraint" value="/\ MaxDelta(10)&#10;/\ MaxLinkDups(3)"/>
+<stringAttribute key="modelParameterContraint" value="/\ MaxDelta(20)&#10;/\ MaxDups(1)"/>
 <listAttribute key="modelParameterDefinitions"/>
 <stringAttribute key="modelParameterModelValues" value="{}"/>
 <stringAttribute key="modelParameterNewDefinitions" value=""/>

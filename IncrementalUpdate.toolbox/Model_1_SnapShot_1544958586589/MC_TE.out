@@ -1,0 +1,127 @@
+@!@!@STARTMSG 2262:0 @!@!@
+TLC2 Version 2.13 of 18 July 2018
+@!@!@ENDMSG 2262 @!@!@
+@!@!@STARTMSG 2187:0 @!@!@
+Running breadth-first search Model-Checking with seed 6630172353248935991 with 2 workers on 4 cores with 304MB heap and 683MB offheap memory (Linux 4.18.0-12-generic amd64, Oracle Corporation 1.8.0_191 x86_64).
+@!@!@ENDMSG 2187 @!@!@
+@!@!@STARTMSG 2220:0 @!@!@
+Starting SANY...
+@!@!@ENDMSG 2220 @!@!@
+Parsing file /home/tomek/postgresql-ivm/specs/IncrementalUpdate.toolbox/Model_1/MC.tla
+Parsing file /home/tomek/postgresql-ivm/specs/IncrementalUpdate.toolbox/Model_1/incremental_update.tla
+Parsing file /home/tomek/postgresql-ivm/toolbox/plugins/org.lamport.tlatools_1.0.0.201807180447/tla2sany/StandardModules/TLC.tla
+Parsing file /home/tomek/postgresql-ivm/toolbox/plugins/org.lamport.tlatools_1.0.0.201807180447/tla2sany/StandardModules/Integers.tla
+Parsing file /home/tomek/postgresql-ivm/toolbox/plugins/org.lamport.tlatools_1.0.0.201807180447/tla2sany/StandardModules/Bags.tla
+Parsing file /home/tomek/postgresql-ivm/toolbox/plugins/org.lamport.tlatools_1.0.0.201807180447/tla2sany/StandardModules/Naturals.tla
+Parsing file /home/tomek/postgresql-ivm/toolbox/plugins/org.lamport.tlatools_1.0.0.201807180447/tla2sany/StandardModules/Sequences.tla
+Parsing file /home/tomek/postgresql-ivm/toolbox/plugins/org.lamport.tlatools_1.0.0.201807180447/tla2sany/StandardModules/FiniteSets.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module TLC
+Semantic processing of module Bags
+Semantic processing of module incremental_update
+Semantic processing of module MC
+@!@!@STARTMSG 2219:0 @!@!@
+SANY finished.
+@!@!@ENDMSG 2219 @!@!@
+@!@!@STARTMSG 2185:0 @!@!@
+Starting... (2018-12-16 12:03:27)
+@!@!@ENDMSG 2185 @!@!@
+@!@!@STARTMSG 2189:0 @!@!@
+Computing initial states...
+@!@!@ENDMSG 2189 @!@!@
+@!@!@STARTMSG 2190:0 @!@!@
+Finished computing initial states: 1 distinct state generated.
+@!@!@ENDMSG 2190 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(6) at 2018-12-16 12:03:31: 2363 states generated (2 363 s/min), 644 distinct states found (644 ds/min), 493 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(10) at 2018-12-16 12:04:31: 145276 states generated (142 913 s/min), 23347 distinct states found (22 703 ds/min), 15010 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(10) at 2018-12-16 12:05:31: 285751 states generated (140 475 s/min), 42715 distinct states found (19 368 ds/min), 26636 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(11) at 2018-12-16 12:06:31: 436379 states generated (150 628 s/min), 58443 distinct states found (15 728 ds/min), 34097 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2201:0 @!@!@
+The coverage statistics at 2018-12-16 12:06:31
+@!@!@ENDMSG 2201 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 100, col 8 to line 100, col 47 of module incremental_update: 24344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 101, col 8 to line 101, col 53 of module incremental_update: 24344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 102, col 8 to line 102, col 56 of module incremental_update: 24344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 20 to line 103, col 29 of module incremental_update: 24344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 103, col 32 to line 103, col 40 of module incremental_update: 24344
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 69, col 8 to line 69, col 48 of module incremental_update: 292131
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 70, col 8 to line 70, col 51 of module incremental_update: 292131
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 74, col 8 to line 74, col 35 of module incremental_update: 119903
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 75, col 8 to line 75, col 37 of module incremental_update: 119903
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 79, col 20 to line 79, col 28 of module incremental_update: 146067
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 79, col 31 to line 79, col 40 of module incremental_update: 146067
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 79, col 43 to line 79, col 50 of module incremental_update: 146067
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 20 to line 83, col 28 of module incremental_update: 61413
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 31 to line 83, col 40 of module incremental_update: 61413
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 83, col 43 to line 83, col 50 of module incremental_update: 61413
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 87, col 20 to line 87, col 29 of module incremental_update: 146064
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 87, col 32 to line 87, col 42 of module incremental_update: 146064
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 87, col 45 to line 87, col 52 of module incremental_update: 146064
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 20 to line 91, col 29 of module incremental_update: 58490
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 32 to line 91, col 42 of module incremental_update: 58490
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 91, col 45 to line 91, col 52 of module incremental_update: 58490
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2202:0 @!@!@
+End of statistics.
+@!@!@ENDMSG 2202 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(11) at 2018-12-16 12:07:31: 564880 states generated (128 501 s/min), 74001 distinct states found (15 558 ds/min), 42733 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(11) at 2018-12-16 12:08:31: 689477 states generated (124 597 s/min), 86785 distinct states found (12 784 ds/min), 48775 states left on queue.
+@!@!@ENDMSG 2200 @!@!@
+@!@!@STARTMSG 2200:0 @!@!@
+Progress(11) at 2018-12-16 12:09:31: 817639 states generated (128 162 s/min), 98469 distinct states found (11 684 ds/min), 53534 states left on queue.
+@!@!@ENDMSG 2200 @!@!@

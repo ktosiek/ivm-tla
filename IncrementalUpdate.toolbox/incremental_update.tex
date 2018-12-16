@@ -943,6 +943,238 @@
  incremental\_update}\moduleRightDash\@xx{}%
 \@x{ {\EXTENDS} Integers ,\, Bags ,\, TLC}%
 \@pvspace{8.0pt}%
+\@x{ {\CONSTANTS} Groups ,\, Users ,\, Documents}%
+ \@x{ {\VARIABLES} userGroups ,\, dUserGroups ,\, docGroups ,\, dDocGroups ,\,
+ mUserDoc}%
+\@pvspace{8.0pt}%
+\@x{ {\RECURSIVE} SumAcc ( \_ ,\, \_ ,\, \_ )}%
+\@x{ SumAcc ( f ,\, S ,\, Acc ) \.{\defeq}}%
+\@x{\@s{16.4} {\IF} S \.{=} \{ \} \.{\THEN} Acc}%
+ \@x{\@s{16.4} \.{\ELSE} \.{\LET} x \.{\defeq} {\CHOOSE} x \.{\in} S \.{:}
+ {\TRUE}}%
+ \@x{\@s{47.71} \.{\IN} SumAcc ( f ,\, S \.{\,\backslash\,} \{ x \} ,\, Acc
+ \.{+} f [ x ] )}%
+\@x{ Sum ( f ,\, S ) \.{\defeq} SumAcc ( f ,\, S ,\, 0 )}%
+\@x{ SumF ( F ) \.{\defeq} Sum ( F ,\, {\DOMAIN} F )}%
+\@pvspace{8.0pt}%
+\@x{ Abs ( n ) \.{\defeq} {\IF} n \.{<} 0 \.{\THEN} ( \.{-} n ) \.{\ELSE} n}%
+\@x{ NBag ( B ) \.{\defeq}}%
+ \@x{\@s{25.06} \.{\LET} nonEmpty \.{\defeq} \{ e \.{\in} {\DOMAIN} B \.{:} B
+ [ e ] \.{\neq} 0 \}}%
+\@x{\@s{25.06} \.{\IN} [ e \.{\in} nonEmpty \.{\mapsto} B [ e ] ]}%
+\@pvspace{8.0pt}%
+\@x{ BagPlus ( B1 ,\, B2 ) \.{\defeq}}%
+ \@x{\@s{16.4} [ e \.{\in} ( {\DOMAIN} B1 ) \.{\cup} ( {\DOMAIN} B2 )
+ \.{\mapsto}}%
+ \@x{\@s{28.62} ( {\IF} e \.{\in} {\DOMAIN} B1 \.{\THEN} B1 [ e ] \.{\ELSE} 0
+ )}%
+ \@x{\@s{16.4} \.{+} ( {\IF} e \.{\in} {\DOMAIN} B2 \.{\THEN} B2 [ e ]
+ \.{\ELSE} 0 ) ]}%
+\@pvspace{8.0pt}%
+\@x{ BagMinus ( B1 ,\, B2 ) \.{\defeq}}%
+ \@x{\@s{16.4} [ e \.{\in} ( {\DOMAIN} B1 ) \.{\cup} ( {\DOMAIN} B2 )
+ \.{\mapsto}}%
+ \@x{\@s{28.62} ( {\IF} e \.{\in} {\DOMAIN} B1 \.{\THEN} B1 [ e ] \.{\ELSE} 0
+ )}%
+ \@x{\@s{16.4} \.{-} ( {\IF} e \.{\in} {\DOMAIN} B2 \.{\THEN} B2 [ e ]
+ \.{\ELSE} 0 ) ]}%
+\@pvspace{8.0pt}%
+\@x{ BagEq ( B1 ,\, B2 ) \.{\defeq}}%
+\@x{\@s{16.4} {\DOMAIN} ( NBag ( BagMinus ( B1 ,\, B2 ) ) ) \.{=} \{ \}}%
+\@pvspace{8.0pt}%
+\@x{ NoNegativeValues ( B ) \.{\defeq}}%
+\@x{\@s{16.4} \A\, e \.{\in} {\DOMAIN} B \.{:} B [ e ] \.{\geq} 0}%
+\@pvspace{8.0pt}%
+\@x{}\midbar\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ TypeOK \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land}\@s{9.74} ( {\DOMAIN} userGroups ) \.{\subseteq} (
+ Users \.{\times} Groups )}%
+\@x{\@s{16.4} \.{\land}\@s{9.74} NoNegativeValues ( userGroups )}%
+ \@x{\@s{16.4} \.{\land}\@s{9.74} ( {\DOMAIN} dUserGroups ) \.{\subseteq} (
+ Users \.{\times} Groups )}%
+\@pvspace{8.0pt}%
+ \@x{\@s{16.4} \.{\land}\@s{9.74} ( {\DOMAIN} docGroups ) \.{\subseteq} (
+ Documents \.{\times} Groups )}%
+\@x{\@s{16.4} \.{\land}\@s{9.74} NoNegativeValues ( docGroups )}%
+ \@x{\@s{16.4} \.{\land}\@s{9.74} ( {\DOMAIN} dDocGroups ) \.{\subseteq} (
+ Documents \.{\times} Groups )}%
+\@pvspace{8.0pt}%
+ \@x{\@s{16.4} \.{\land}\@s{9.74} ( {\DOMAIN} mUserDoc ) \.{\subseteq} ( Users
+ \.{\times} Documents )}%
+\@x{\@s{16.4} \.{\land}\@s{9.74} NoNegativeValues ( mUserDoc )}%
+\@pvspace{8.0pt}%
+\@x{}%
+\@y{\@s{0}%
+ A cross product on bags
+}%
+\@xx{}%
+\@x{ Join ( R ,\, S ) \.{\defeq} [}%
+ \@x{\@s{19.81} {\langle} r ,\, s {\rangle} \.{\in} ( {\DOMAIN} R ) \.{\times}
+ ( {\DOMAIN} S ) \.{\mapsto}}%
+\@x{\@s{19.81} CopiesIn ( r ,\, R ) \.{*} CopiesIn ( s ,\, S )}%
+\@x{ ]}%
+\@pvspace{8.0pt}%
+\@x{ UserDoc ( ugs ,\, gds ) \.{\defeq} [}%
+ \@x{\@s{16.4} {\langle} user ,\, doc {\rangle} \.{\in} ( Users \.{\times}
+ Documents ) \.{\mapsto}}%
+\@x{\@s{16.4} \.{\LET} prod \.{\defeq} Join ( ugs ,\, gds )}%
+\@x{\@s{16.4} \.{\IN} SumF ( NBag ( [}%
+ \@x{\@s{40.89} {\langle} ug ,\, gd {\rangle}\@s{7.13} \.{\in} {\DOMAIN} prod
+ \.{\mapsto}}%
+\@x{\@s{40.89} {\IF} \.{\land} user \.{=} ug [ 1 ]}%
+\@x{\@s{53.05} \.{\land} ug [ 2 ] \.{=} gd [ 1 ]}%
+\@x{\@s{53.05} \.{\land} gd [ 2 ]\@s{0.10} \.{=} doc}%
+\@x{\@s{40.89} \.{\THEN} prod [ {\langle} ug ,\, gd {\rangle} ] \.{\ELSE} 0}%
+\@x{\@s{16.4} ] ) )}%
+\@x{ ]}%
+\@pvspace{8.0pt}%
+\@x{ AddWithDelta ( B ,\, dB ,\, t ) \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land} B \.{'} \.{=} [ B {\EXCEPT} {\bang} [ t ] \.{=}
+ CopiesIn ( t ,\, B ) \.{+} 1 ]}%
+ \@x{\@s{16.4} \.{\land} dB \.{'} \.{=} [ dB {\EXCEPT} {\bang} [ t ] \.{=}
+ CopiesIn ( t ,\, dB ) \.{+} 1 ]}%
+\@pvspace{8.0pt}%
+\@x{ RemoveWithDelta ( B ,\, dB ,\, t ) \.{\defeq}}%
+\@x{\@s{16.4} \.{\land} B [ t ] \.{\neq} 0}%
+ \@x{\@s{16.4} \.{\land} B \.{'} \.{=} [ B {\EXCEPT} {\bang} [ t ] \.{=} @
+ \.{-} 1 ]}%
+ \@x{\@s{16.4} \.{\land} dB \.{'} \.{=} [ dB {\EXCEPT} {\bang} [ t ] \.{=} @
+ \.{-} 1 ]}%
+\@pvspace{8.0pt}%
+ \@x{ AddUserToGroup \.{\defeq} \E\, t \.{\in} ( Users \.{\times} Groups )
+ \.{:}}%
+\@x{\@s{16.4} \.{\land} AddWithDelta ( userGroups ,\, dUserGroups ,\, t )}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} docGroups ,\, dDocGroups ,\,
+ mUserDoc {\rangle}}%
+\@pvspace{8.0pt}%
+ \@x{ RemoveUserFromGroup \.{\defeq} \E\, t \.{\in} {\DOMAIN} userGroups
+ \.{:}}%
+\@x{\@s{16.4} \.{\land} RemoveWithDelta ( userGroups ,\, dUserGroups ,\, t )}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} docGroups ,\, dDocGroups ,\,
+ mUserDoc {\rangle}}%
+\@pvspace{8.0pt}%
+ \@x{ PublishDocumentForGroup \.{\defeq} \E\, doc \.{\in} Documents ,\, group
+ \.{\in} Groups \.{:}}%
+ \@x{\@s{16.4} \.{\land} AddWithDelta ( docGroups ,\, dDocGroups ,\, {\langle}
+ doc ,\, group {\rangle} )}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} userGroups ,\, dUserGroups ,\,
+ mUserDoc {\rangle}}%
+\@pvspace{8.0pt}%
+ \@x{ HideDocumentFromGroup \.{\defeq} \E\, t \.{\in} {\DOMAIN} docGroups
+ \.{:}}%
+\@x{\@s{16.4} \.{\land} RemoveWithDelta ( docGroups ,\, dDocGroups ,\, t )}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} userGroups ,\, dUserGroups ,\,
+ mUserDoc {\rangle}}%
+\@pvspace{8.0pt}%
+\@x{}%
+\@y{\@s{0}%
+ delta \ensuremath{mUserDoc} na podstawie delt \ensuremath{userGroups}
+ \ensuremath{i} \ensuremath{docGroups
+}}%
+\@xx{}%
+\@x{ UserDocDelta ( dUG ,\, dDG ) \.{\defeq}}%
+\@x{\@s{16.4} BagMinus (}%
+\@x{\@s{32.8} BagPlus ( UserDoc ( dUG ,\, docGroups ) ,\,}%
+\@x{\@s{73.05} UserDoc ( userGroups ,\, dDG ) ) ,\,}%
+\@x{\@s{32.8} UserDoc ( dUG ,\, dDG ) )}%
+\@pvspace{8.0pt}%
+\@x{}%
+\@y{\@s{0}%
+ \ensuremath{UserDoc(userGroups,\, docGroups) \.{-} mUserDoc
+}}%
+\@xx{}%
+\@x{ dmUserDoc \.{\defeq}}%
+\@x{\@s{16.4} UserDocDelta ( dUserGroups ,\, dDocGroups )}%
+\@pvspace{8.0pt}%
+\@x{ ApplyAllDeltas \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land} mUserDoc \.{'} \.{=} BagPlus ( mUserDoc ,\, dmUserDoc
+ )}%
+ \@x{\@s{16.4} \.{\land} dUserGroups \.{'} \.{=} [ t \.{\in} ( Users
+ \.{\times} Groups ) \.{\mapsto} 0 ]}%
+ \@x{\@s{16.4} \.{\land} dDocGroups \.{'} \.{=} [ t \.{\in} ( Documents
+ \.{\times} Groups ) \.{\mapsto} 0 ]}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} userGroups ,\, docGroups
+ {\rangle}}%
+\@pvspace{8.0pt}%
+ \@x{ emptyUserGroups \.{\defeq} [ t \.{\in} ( Users \.{\times} Groups )
+ \.{\mapsto} 0 ]}%
+ \@x{ emptyDocGroups \.{\defeq} [ t \.{\in} ( Documents \.{\times} Groups )
+ \.{\mapsto} 0 ]}%
+\@pvspace{8.0pt}%
+ \@x{ ApplySomeUserDeltas \.{\defeq} \E\, ts \.{\in} {\SUBSET} ( {\DOMAIN}
+ dUserGroups ) \.{:}}%
+ \@x{\@s{16.4} \.{\LET} dUG \.{\defeq} [ t \.{\in} ts \.{\mapsto} dUserGroups
+ [ t ] ] \.{\IN}}%
+ \@x{\@s{16.4} \.{\land} mUserDoc \.{'} \.{=} BagPlus ( mUserDoc ,\,
+ UserDocDelta ( dUG ,\, emptyDocGroups ) )}%
+ \@x{\@s{16.4} \.{\land} dUserGroups \.{'} \.{=} BagMinus ( dUserGroups ,\,
+ dUG )}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} userGroups ,\, docGroups ,\,
+ dDocGroups {\rangle}}%
+\@pvspace{8.0pt}%
+ \@x{ ApplySomeDocumentDeltas \.{\defeq} \E\, ts \.{\in} {\SUBSET} ( {\DOMAIN}
+ dDocGroups ) \.{:}}%
+ \@x{\@s{16.4} \.{\LET} dDG \.{\defeq} [ t \.{\in} ts \.{\mapsto} dDocGroups [
+ t ] ] \.{\IN}}%
+ \@x{\@s{16.4} \.{\land} mUserDoc \.{'} \.{=} BagPlus ( mUserDoc ,\,
+ UserDocDelta ( emptyUserGroups ,\, dDG ) )}%
+ \@x{\@s{16.4} \.{\land} dDocGroups \.{'} \.{=} BagMinus ( dDocGroups ,\, dDG
+ )}%
+ \@x{\@s{16.4} \.{\land} {\UNCHANGED} {\langle} userGroups ,\, docGroups ,\,
+ dUserGroups {\rangle}}%
+\@pvspace{8.0pt}%
+\@x{ deltasEmpty \.{\defeq}}%
+\@x{\@s{16.4} \.{\land} BagEq ( dUserGroups ,\, EmptyBag )}%
+\@x{\@s{16.4} \.{\land} BagEq ( dDocGroups ,\, EmptyBag )}%
+\@pvspace{8.0pt}%
+\@x{ Init \.{\defeq}}%
+\@x{\@s{16.4} \.{\land} userGroups \.{=} emptyUserGroups}%
+\@x{\@s{16.4} \.{\land} dUserGroups \.{=} emptyUserGroups}%
+\@x{\@s{16.4} \.{\land} docGroups \.{=} emptyDocGroups}%
+\@x{\@s{16.4} \.{\land} dDocGroups \.{=} emptyDocGroups}%
+\@x{\@s{16.4} \.{\land} deltasEmpty}%
+\@x{\@s{16.4} \.{\land} mUserDoc \.{=} UserDoc ( userGroups ,\, docGroups )}%
+\@x{\@s{16.4} \.{\land} BagEq ( mUserDoc ,\, EmptyBag )}%
+\@pvspace{8.0pt}%
+\@x{ Next \.{\defeq}}%
+\@x{\@s{16.4} \.{\lor} AddUserToGroup}%
+\@x{\@s{16.4} \.{\lor} RemoveUserFromGroup}%
+\@x{\@s{16.4} \.{\lor} PublishDocumentForGroup}%
+\@x{\@s{16.4} \.{\lor} HideDocumentFromGroup}%
+\@x{\@s{16.4} \.{\lor} ApplySomeUserDeltas}%
+\@x{\@s{16.4} \.{\lor} ApplySomeDocumentDeltas}%
+\@x{\@s{16.4}}%
+\@y{\@s{0}%
+ \ensuremath{\.{\lor} ApplyAllDeltas
+}}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ Spec \.{\defeq}}%
+\@x{\@s{16.4} \.{\land} Init}%
+ \@x{\@s{16.4} \.{\land} {\Box} [ Next ]_{ {\langle} userGroups ,\,
+ dUserGroups ,\, docGroups ,\, dDocGroups ,\, mUserDoc {\rangle}}}%
+ \@x{\@s{16.4} \.{\land} {\Box} [ ( {\lnot} deltasEmpty ) \.{\leadsto}
+ {\FALSE} ]}%
+\@pvspace{8.0pt}%
+\@x{ Consistent \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land} deltasEmpty \.{\implies} BagEq ( mUserDoc ,\, UserDoc
+ ( userGroups ,\, docGroups ) )}%
+ \@x{\@s{16.4} \.{\land} BagEq ( BagPlus ( mUserDoc ,\, dmUserDoc ) ,\,
+ UserDoc ( userGroups ,\, docGroups ) )}%
+\@pvspace{8.0pt}%
+\@x{ MaxDelta ( n ) \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land} n \.{\geq} SumF ( [ i \.{\in} {\DOMAIN} dUserGroups
+ \.{\mapsto} Abs ( dUserGroups [ i ] ) ] )}%
+ \@x{\@s{16.4} \.{\land} n \.{\geq} SumF ( [ i \.{\in} {\DOMAIN} dDocGroups
+ \.{\mapsto} Abs ( dDocGroups [ i ] ) ] )}%
+\@pvspace{8.0pt}%
+\@x{ MaxDups ( n ) \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land}\@s{14.14} \A\, t \.{\in} {\DOMAIN} userGroups \.{:}
+ userGroups [ t ] \.{\leq} n}%
+ \@x{\@s{16.4} \.{\land}\@s{14.14} \A\, t \.{\in} {\DOMAIN} docGroups \.{:}
+ docGroups [ t ] \.{\leq} n}%
+\@pvspace{8.0pt}%
 \@x{}%
 \@y{\@s{0}%
  \ensuremath{\.{\rightarrow} R}, \ensuremath{dR}, \ensuremath{S},
@@ -979,16 +1211,16 @@
 \setboolean{shading}{false}
 \begin{lcom}{0}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
-\ensuremath{\.{\,\backslash\,}}* Modification History
+\ensuremath{\.{\,\backslash\,}\.{*}} Modification History
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Last modified Sat \ensuremath{Dec} 15
- 10:15:17 \ensuremath{CET} 2018 by \ensuremath{tomek
+ \ensuremath{\.{\,\backslash\,}\.{*}} Last modified Sun \ensuremath{Dec} 16
+ 12:48:37 \ensuremath{CET} 2018 by \ensuremath{tomek
 }%
 \end{cpar}%
 \begin{cpar}{0}{F}{F}{0}{0}{}%
- \ensuremath{\.{\,\backslash\,}}* Created \ensuremath{Wed} \ensuremath{Dec} 12
- 22:55:34 \ensuremath{CET} 2018 by \ensuremath{tomek
+ \ensuremath{\.{\,\backslash\,}\.{*}} Created \ensuremath{Wed}
+ \ensuremath{Dec} 12 22:55:34 \ensuremath{CET} 2018 by \ensuremath{tomek
 }%
 \end{cpar}%
 \end{lcom}%
